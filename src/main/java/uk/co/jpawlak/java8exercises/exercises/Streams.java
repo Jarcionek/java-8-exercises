@@ -14,6 +14,7 @@ import java.util.stream.Stream;
 import static com.shazam.shazamcrest.MatcherAssert.assertThat;
 import static com.shazam.shazamcrest.matcher.Matchers.sameBeanAs;
 import static java.util.Arrays.asList;
+import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 import static org.hamcrest.CoreMatchers.both;
 import static org.hamcrest.CoreMatchers.instanceOf;
@@ -149,6 +150,23 @@ public class Streams {
 
         assertThat(result, both(instanceOf(nestedClass("UnmodifiableSet")))
                 .and(sameBeanAs(ImmutableSet.of(2, 3, 4, 5, 6, 8))));
+    }
+
+    @Test
+    public void example_7_flatMap_collectJoining() {
+        Stream<Stream<Integer>> streamOfStream = Stream.of(
+                Stream.of(1, 2, 3, 4),
+                Stream.of(5, 6),
+                Stream.of(7, 8, 9)
+        );
+
+        Stream<Integer> flattenedStream = streamOfStream.flatMap(stream -> stream);
+
+        String concatenated = flattenedStream
+                .map(String::valueOf)
+                .collect(joining(", "));
+
+        System.out.println(concatenated);
     }
 
 }

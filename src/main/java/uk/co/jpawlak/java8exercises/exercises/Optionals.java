@@ -30,7 +30,7 @@ public class Optionals {
     }
 
     @Test
-    public void example_3_convertingAndFilteringOptionalValue() {
+    public void example_3_map_filter() {
         Optional<String> optional = Optional.of("John");
 //        Optional<String> optional = Optional.of("Jack");
 //        Optional<String> optional = Optional.empty();
@@ -38,6 +38,17 @@ public class Optionals {
         optional.map(value -> "Hello " + value + "!").ifPresent(System.out::println);
 
         optional.filter(value -> value.equals("Jack")).ifPresent(System.out::println);
+    }
+
+    @Test
+    public void example_4_flatMap() {
+        Optional<Optional<String>> nestedOptional = Optional.of(Optional.of("Jack"));
+//        Optional<Optional<String>> nestedOptional = Optional.of(Optional.empty());
+//        Optional<Optional<String>> nestedOptional = Optional.empty();
+
+        Optional<String> flattenedOptional = nestedOptional.flatMap(optional -> optional);
+
+        System.out.println(flattenedOptional.get());
     }
 
 }
