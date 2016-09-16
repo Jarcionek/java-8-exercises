@@ -32,9 +32,8 @@ public class ToughStreamExercises {
                 .collect(groupingBy(employee -> employee.getHomeAddress().getPostCode().substring(0, 2)))
                 .entrySet()
                 .stream()
-                .map(entry -> new Pair<>(entry.getKey(), entry.getValue().size()))
+                .map(entry -> new Pair<>(entry.getKey(), entry.getValue().size())) //TODO Jarek: can this be done using groupingBy(..., counting())?
                 .filter(pair -> pair.getValue() >= 5)
-                .sorted((a, b) -> a.getValue().compareTo(b.getValue()))
                 .count();
 
         assertThat(result, sameBeanAs(110L));
