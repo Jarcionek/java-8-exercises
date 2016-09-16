@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 import static com.shazam.shazamcrest.MatcherAssert.assertThat;
 import static com.shazam.shazamcrest.matcher.Matchers.sameBeanAs;
 import static java.util.Arrays.asList;
+import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 import static uk.co.jpawlak.java8exercises.utils.Employees.allEmployees;
 
@@ -21,7 +22,7 @@ public class ToughStreamExercises {
     private static final List<Employee> EMPLOYEES = allEmployees();
 
     @Test
-    public void exercise__groupingBy() {
+    public void exercise__groupingBy_counting() {
         // find the total number of groups of at least 5 employees living close to each other
         // consider all employees with the same 2 first characters of the home address post code a single group
 
@@ -29,10 +30,16 @@ public class ToughStreamExercises {
 
         //TODO write your code here
         result = EMPLOYEES.stream()
+                .collect(groupingBy(employee -> employee.getHomeAddress().getPostCode().substring(0, 2), counting()))
+                .values()
+                .stream()
+                .filter(size -> size >= 5)
+                .count();
+        result = EMPLOYEES.stream()
                 .collect(groupingBy(employee -> employee.getHomeAddress().getPostCode().substring(0, 2)))
                 .entrySet()
                 .stream()
-                .map(entry -> new Pair<>(entry.getKey(), entry.getValue().size())) //TODO Jarek: can this be done using groupingBy(..., counting())?
+                .map(entry -> new Pair<>(entry.getKey(), entry.getValue().size()))
                 .filter(pair -> pair.getValue() >= 5)
                 .count();
 
