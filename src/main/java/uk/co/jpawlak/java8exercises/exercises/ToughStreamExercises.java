@@ -52,7 +52,7 @@ public class ToughStreamExercises {
                 .distinct()
                 .count();
 
-        assertThat(result, sameBeanAs(1820));
+        assertThat(result, sameBeanAs(1820L));
     }
 
     @Test
@@ -91,7 +91,5 @@ public class ToughStreamExercises {
                 "GlaxoSmithKline - £9,499,235.00"
         )));
     }
-
-    //TODO Jarek: add project lombok and remove toString/equals methods from Employee etc
 
 }
