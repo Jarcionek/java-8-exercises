@@ -197,6 +197,8 @@ public class LambdasAndMethodReferences {
     public void exercise_2_numberFormatter() {
         // call the formatter to format int 30000 as currency
         // as in previous exercise, the solution should be one-liner
+        // the formatter takes transformation and initial amount, first apply transformer function on the amount
+        // and then formats the string
 
         Formatter formatter = new Formatter();
         String result = null;
