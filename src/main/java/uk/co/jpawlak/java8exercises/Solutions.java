@@ -1,16 +1,22 @@
 package uk.co.jpawlak.java8exercises;
 
+import uk.co.jpawlak.java8exercises.utils.Employee;
 import uk.co.jpawlak.java8exercises.utils.Formatter;
 import uk.co.jpawlak.java8exercises.utils.Node;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.summingInt;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
@@ -56,6 +62,53 @@ public class Solutions {
         Set<Integer> result;
         result = Arrays.stream(numbers).collect(collectingAndThen(toSet(), Collections::unmodifiableSet));
         return result;
+    }
+
+    public static String toughStreams_exercise_1(List<Employee> employees) {
+        return employees.stream()
+                .filter(employee1 -> employees.stream()
+                        .filter(employee2 -> employee1 != employee2
+                                && employee1.getFirstName().equals(employee2.getFirstName())
+                                && employee1.getSurname().equals(employee2.getSurname())
+                        )
+                        .findFirst()
+                        .isPresent())
+                .findFirst()
+                .map(employee -> employee.getFirstName() + " " + employee.getSurname())
+                .orElse(null);
+    }
+
+    public static long toughStreams_exercise_2(List<Employee> employees) {
+        return employees.stream()
+                .collect(groupingBy(
+                        employee -> employee.getHomeAddress().getPostCode().substring(0, 2),
+                        counting()
+                ))
+                .values()
+                .stream()
+                .filter(size -> size >= 5)
+                .count();
+    }
+
+    public static long toughStreams_exercise_3(List<Employee> employees) {
+        return employees.stream()
+                .flatMap(employee -> Stream.of(employee.getHomeAddress(), employee.getCorrespondenceAddress().orElse(null)))
+                .filter(address -> address != null)
+                .distinct()
+                .count();
+    }
+
+    public static List<String> toughStreams_exercise_4(DecimalFormat decimalFormat, List<Employee> employees) {
+        return employees.stream()
+                .collect(groupingBy(
+                        employee -> employee.getCompany().getName(),
+                        summingInt(employee -> employee.getSalary().intValue())
+                ))
+                .entrySet()
+                .stream()
+                .sorted((a, b) -> b.getValue().compareTo(a.getValue()))
+                .map(pair -> pair.getKey() + " - " + decimalFormat.format(pair.getValue()))
+                .collect(toList());
     }
 
 }
