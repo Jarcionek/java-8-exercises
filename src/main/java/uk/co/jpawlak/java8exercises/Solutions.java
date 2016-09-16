@@ -3,12 +3,14 @@ package uk.co.jpawlak.java8exercises;
 import uk.co.jpawlak.java8exercises.utils.Formatter;
 import uk.co.jpawlak.java8exercises.utils.Node;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
@@ -48,6 +50,12 @@ public class Solutions {
                 .limit(5)
                 .mapToObj(n -> n)
                 .collect(toList());
+    }
+
+    public static Set<Integer> streams_exercise_5(Integer[] numbers) {
+        Set<Integer> result;
+        result = Arrays.stream(numbers).collect(collectingAndThen(toSet(), Collections::unmodifiableSet));
+        return result;
     }
 
 }

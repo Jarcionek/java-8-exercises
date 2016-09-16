@@ -15,6 +15,9 @@ import static com.shazam.shazamcrest.MatcherAssert.assertThat;
 import static com.shazam.shazamcrest.matcher.Matchers.sameBeanAs;
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toList;
+import static org.hamcrest.CoreMatchers.both;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static uk.co.jpawlak.java8exercises.utils.Utils.nestedClass;
 
 @SuppressWarnings("all")
 public class Streams {
@@ -130,6 +133,22 @@ public class Streams {
         //TODO write your code here
 
         assertThat(result, sameBeanAs(asList(938301587, 100082026, 356750287, 798819494, 1412716779)));
+    }
+
+    @Ignore
+    @Test
+    public void exercise_5_collectingAndThen() {
+        // collect to unmodifiable set using Collections.unmodifiableSet
+        // unmodifiableSet cannot be called directly, it can be only refered to using method reference
+        // Arrays.stream will be useful as well
+
+        Integer[] numbers = {4, 2, 3, 8, 5, 6, 3, 4, 5};
+        Set<Integer> result = null;
+
+        //TODO write your code here
+
+        assertThat(result, both(instanceOf(nestedClass("UnmodifiableSet")))
+                .and(sameBeanAs(ImmutableSet.of(2, 3, 4, 5, 6, 8))));
     }
 
 }
