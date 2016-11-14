@@ -8,16 +8,23 @@ import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Set;
+import java.util.TreeMap;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import static java.lang.String.format;
+import static java.util.Comparator.comparing;
+import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.summingInt;
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toMap;
 import static java.util.stream.Collectors.toSet;
 
 public class Solutions {
@@ -108,6 +115,25 @@ public class Solutions {
                 .stream()
                 .sorted((a, b) -> b.getValue().compareTo(a.getValue()))
                 .map(pair -> pair.getKey() + " - " + decimalFormat.format(pair.getValue()))
+                .collect(toList());
+    }
+
+    public static List<String> toughStreams_exercise_5_solution_1(String string) {
+        return Pattern.compile("\n").splitAsStream(string)
+                .collect(groupingBy(identity()))
+                .entrySet()
+                .stream()
+                .sorted(comparing(Entry::getKey))
+                .map(entry -> format("%s - %s", entry.getKey(), entry.getValue().size()))
+                .collect(toList());
+    }
+
+    public static List<String> toughStreams_exercise_5_solution_2(String string) {
+        return Pattern.compile("\n").splitAsStream(string)
+                .collect(toMap(identity(), element -> 1, (a, b) -> a + b, TreeMap::new))
+                .entrySet()
+                .stream()
+                .map(entry -> format("%s - %s", entry.getKey(), entry.getValue()))
                 .collect(toList());
     }
 

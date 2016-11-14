@@ -2,7 +2,6 @@ package uk.co.jpawlak.java8exercises.exercises;
 
 import org.junit.Ignore;
 import org.junit.Test;
-import uk.co.jpawlak.java8exercises.Solutions;
 import uk.co.jpawlak.java8exercises.utils.Employee;
 
 import java.text.DecimalFormat;
@@ -80,6 +79,27 @@ public class ToughStreamExercises {
                 "Barclays plc - £10,071,534.00",
                 "Vodafone Group - £10,029,401.00",
                 "GlaxoSmithKline - £9,499,235.00"
+        )));
+    }
+
+    @Ignore
+    @Test
+    public void exercise_5() {
+        // count the instances of words and output a list of formatted strings
+        // output the strings sorted lexicographically by name
+        // you can use collect twice
+        // as always, a single statement solution is expected
+        // hint: look at Pattern.compile(regex).splitAsStream(string)
+
+        String string = "dog" + "\n" + "bird" + "\n" + "cat" + "\n" + "cat" + "\n" + "dog" + "\n" + "cat";
+        List<String> result = null;
+
+        //TODO write your code here
+
+        assertThat(result, sameBeanAs(asList(
+                "bird - 1",
+                "cat - 3",
+                "dog - 2"
         )));
     }
 
