@@ -7,6 +7,7 @@ import uk.co.jpawlak.java8exercises.utils.Node;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -71,7 +72,7 @@ public class Solutions {
         return result;
     }
 
-    public static String toughStreams_exercise_1(List<Employee> employees) {
+    public static String toughStreams_exercise_1_solution_1(List<Employee> employees) {
         return employees.stream()
                 .filter(employee1 -> employees.stream()
                         .filter(employee2 -> employee1 != employee2
@@ -82,6 +83,44 @@ public class Solutions {
                         .isPresent())
                 .findFirst()
                 .map(employee -> employee.getFirstName() + " " + employee.getSurname())
+                .orElse(null);
+    }
+
+    public static String toughStreams_exercise_1_solution_2(List<Employee> employees) {
+        // those employee.get will have terrible performance in case of LinkedList
+        return IntStream.range(0, employees.size())
+                .filter(i -> IntStream.range(i + 1, employees.size()).anyMatch(j -> haveSameName(employees.get(i), employees.get(j))))
+                .mapToObj(employees::get)
+                .findFirst()
+                .map(employee -> employee.getFirstName() + " " + employee.getSurname())
+                .orElse(null);
+    }
+
+    private static boolean haveSameName(Employee e1, Employee e2) {
+        return e1.getFirstName().equals(e2.getFirstName()) && e1.getSurname().equals(e2.getSurname());
+    }
+
+    public static String toughStreams_exercise_1_solution_3(List<Employee> employees) {
+        List<String> names = employees.stream().map(e -> e.getFirstName() + " " + e.getSurname()).collect(toList());
+
+        return names.stream()
+                .filter(name -> Collections.frequency(names, name) > 1)
+                .findFirst()
+                .orElse(null);
+    }
+
+    public static String toughStreams_exercise_1_solution_4(List<Employee> employees) {
+        // O(n) time complexity, but we need all entries in the memory
+        return employees.stream()
+                .collect(groupingBy(
+                        employee -> employee.getFirstName() + " " + employee.getSurname(),
+                        LinkedHashMap::new,
+                        counting()))
+                .entrySet()
+                .stream()
+                .filter(entry -> entry.getValue() > 1)
+                .findFirst()
+                .map(Entry::getKey)
                 .orElse(null);
     }
 
