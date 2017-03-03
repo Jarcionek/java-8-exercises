@@ -140,7 +140,7 @@ public class Streams {
     @Test
     public void exercise_5_collectingAndThen() {
         // collect to unmodifiable set using Collections.unmodifiableSet
-        // unmodifiableSet cannot be called directly, it can be only refered to using method reference
+        // you are not allowed to call unmodifiableSet directly, you can only refer to it using method reference
         // Arrays.stream will be useful as well
 
         Integer[] numbers = {4, 2, 3, 8, 5, 6, 3, 4, 5};
