@@ -100,7 +100,7 @@ public class Streams {
     @Ignore
     @Test
     public void exercise_3_reduce() {
-        // find the length of the longest strings
+        // find the length of the longest string
 
         List<String> strings = asList("Lorem", "ipsum", "dolor", "sit", "amet,", "consectetur", "adipiscing", "elit.");
         int result = 0;
