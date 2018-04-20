@@ -18,6 +18,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static java.lang.String.format;
+import static java.util.Arrays.stream;
 import static java.util.Comparator.comparing;
 import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.collectingAndThen;
@@ -28,6 +29,7 @@ import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
 import static java.util.stream.Collectors.toSet;
 
+@SuppressWarnings("all")
 public class Solutions {
 
     public static void lambdas_exercise_1(List<Node> list) {
@@ -174,6 +176,13 @@ public class Solutions {
                 .stream()
                 .map(entry -> format("%s - %s", entry.getKey(), entry.getValue()))
                 .collect(toList());
+    }
+
+    public static long toughStreams_exercise_6(int[] rows, int[] columns) {
+        return stream(rows)
+                .asLongStream()
+                .flatMap(rowValue -> stream(columns).mapToLong(columnValue -> rowValue * columnValue))
+                .sum();
     }
 
 }

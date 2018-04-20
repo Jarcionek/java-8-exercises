@@ -103,4 +103,20 @@ public class ToughStreamExercises {
         )));
     }
 
+    @Ignore
+    @Test
+    public void exercise_6() {
+        // the rows and columns of the chess board are assigned arbitrary numbers (instead of letters and digits)
+        // the value of the square is a multiplication of the numbers assigned to corresponding row and column
+        // e.g. square A1 has a value 6,432 * 6,199 = 39,871,968
+        // calculate the sum of values of all squares
+        int[] rows = {6432, 8997, 8500, 7036, 9395, 9372, 9715, 9634};
+        int[] columns = {6199, 9519, 6745, 8864, 8788, 7322, 7341, 7395};
+        long result = 0;
+
+        //TODO write your code here
+
+        assertThat(result, sameBeanAs(4294973013L));
+    }
+
 }
