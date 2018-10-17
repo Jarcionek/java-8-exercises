@@ -19,7 +19,7 @@ import static com.shazam.shazamcrest.matcher.Matchers.sameBeanAs;
 import static java.util.Arrays.asList;
 
 @SuppressWarnings("all")
-public class LambdasAndMethodReferences {
+public class Pack_1_LambdasAndMethodReferences {
 
     @Test
     public void example_1_oneInputOneOutput() {

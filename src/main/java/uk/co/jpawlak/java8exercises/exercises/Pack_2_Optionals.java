@@ -5,7 +5,7 @@ import org.junit.Test;
 import java.util.Optional;
 
 @SuppressWarnings("all")
-public class Optionals {
+public class Pack_2_Optionals {
 
     @Test
     public void example_1_creatingOptionals() {

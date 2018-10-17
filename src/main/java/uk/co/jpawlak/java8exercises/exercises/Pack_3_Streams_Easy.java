@@ -21,7 +21,7 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 import static uk.co.jpawlak.java8exercises.utils.Utils.nestedClass;
 
 @SuppressWarnings("all")
-public class Streams {
+public class Pack_3_Streams_Easy {
 
     @Test
     public void example_1_forEach() {

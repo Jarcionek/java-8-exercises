@@ -13,7 +13,7 @@ import static java.util.Arrays.asList;
 import static uk.co.jpawlak.java8exercises.utils.Employees.allEmployees;
 
 @SuppressWarnings("all")
-public class ToughStreamExercises {
+public class Pack_4_Streams_Difficult {
 
     private static final List<Employee> EMPLOYEES = allEmployees();
 
