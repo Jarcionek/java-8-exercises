@@ -84,7 +84,7 @@ public class Pack_4_Streams_Difficult {
 
     @Ignore
     @Test
-    public void exercise_5() {
+    public void exercise_5_patternCompileSplitAsStream() {
         // count the instances of words and output a list of formatted strings
         // output the strings sorted lexicographically by name
         // you can use collect twice
@@ -105,7 +105,7 @@ public class Pack_4_Streams_Difficult {
 
     @Ignore
     @Test
-    public void exercise_6() {
+    public void exercise_6_mapToLong() {
         // the rows and columns of the chess board are assigned arbitrary numbers (instead of letters and digits)
         // the value of the square is a multiplication of the numbers assigned to corresponding row and column
         // e.g. square A1 has a value 6,432 * 6,199 = 39,871,968

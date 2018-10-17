@@ -77,7 +77,7 @@ public class Pack_3_Streams_Easy {
 
     @Ignore
     @Test
-    public void exercise_2_mapping() {
+    public void exercise_2_map() {
         // find all distinct reminders of division by 13 and collect them sorted
 
         List<String> strings = asList("9", "4", "5", "6", "2", "3", "9", "4", "3", "4", "5");
