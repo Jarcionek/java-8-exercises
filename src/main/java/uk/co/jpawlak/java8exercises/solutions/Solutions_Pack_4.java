@@ -10,6 +10,7 @@ import java.util.Map.Entry;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
 import static java.lang.String.format;
@@ -21,6 +22,7 @@ import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.summingInt;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
+import static java.util.stream.LongStream.concat;
 
 @SuppressWarnings("all")
 public class Solutions_Pack_4 {
@@ -134,6 +136,17 @@ public class Solutions_Pack_4 {
                 .asLongStream()
                 .flatMap(rowValue -> stream(columns).mapToLong(columnValue -> rowValue * columnValue))
                 .sum();
+    }
+
+    public static int[] exercise_7(LongStream longs, IntStream ints) {
+        return concat(longs, ints.mapToLong(n -> n))
+                .map(Math::abs)
+                .sorted()
+                .skip(5)
+                .limit(10)
+                .map(n -> n % 1000)
+                .mapToInt(n -> (int) n)
+                .toArray();
     }
 
 }

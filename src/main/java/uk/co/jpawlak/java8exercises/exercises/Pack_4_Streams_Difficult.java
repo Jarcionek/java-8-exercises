@@ -6,6 +6,9 @@ import uk.co.jpawlak.java8exercises.utils.Employee;
 
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 import static com.shazam.shazamcrest.MatcherAssert.assertThat;
 import static com.shazam.shazamcrest.matcher.Matchers.sameBeanAs;
@@ -117,6 +120,23 @@ public class Pack_4_Streams_Difficult {
         //TODO write your code here
 
         assertThat(result, sameBeanAs(4294973013L));
+    }
+
+    @Ignore
+    @Test
+    public void exercise_7_randomLongs_concat_toArray() {
+        // concatenate two random streams of numbers (seed is fixed for testing purposes),
+        // then revert the sign of the negative ones
+        // then sort them and pick 10 middle elements (hint: you can use skip and limit)
+        // then do modulo 1000 (remainder of division by 1000)
+        // and finally collect the result into an array
+        LongStream longs = new Random(0).longs(10);
+        IntStream ints = new Random(0).ints(10);
+        int[] result = null;
+
+        //TODO write your code here
+
+        assertThat(result, sameBeanAs(new long[] {106, 266, 402, 858, 313, 688, 303, 137, 766, 896}));
     }
 
 }

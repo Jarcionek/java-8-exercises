@@ -169,4 +169,18 @@ public class Pack_3_Streams_Easy {
         System.out.println(concatenated);
     }
 
+    @Test
+    public void example_8_peek() {
+        // you can use peek function to for example see the element at any point in the stream
+
+        Stream.of(1, 2, 3)
+                .peek(n -> System.out.println("A: " + n))
+                .map(n -> n + 5)
+                .peek(n -> System.out.println("B: " + n))
+                .sorted() // this intermediate stateful operation will cause all of above to execute
+                .map(n -> n + 5)
+                .peek(n -> System.out.println("C: " + n))
+                .collect(toList());
+    }
+
 }
