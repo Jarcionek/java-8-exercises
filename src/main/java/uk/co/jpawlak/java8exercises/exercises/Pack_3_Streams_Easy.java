@@ -183,4 +183,19 @@ public class Pack_3_Streams_Easy {
                 .collect(toList());
     }
 
+    @Ignore
+    @Test
+    public void exercise_6_toArray() {
+        // collect a stream of boxed Integers to an array Integer[]
+        // hint: toArray method creates Object[], unless you pass to it a function int -> array (provided int will be the size of the stream)
+
+        Stream<Integer> stream = Stream.of(1, 2, 3);
+        Integer[] result = null;
+
+        //TODO write your code here
+
+        assertThat(result, both(instanceOf(Integer[].class))
+                .and(sameBeanAs(new Integer[] {1, 2, 3})));
+    }
+
 }
