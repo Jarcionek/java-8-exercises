@@ -59,4 +59,14 @@ public class Pack_5_Streams_Java9 {
         //Stream.ofNullable
     }
 
+    @Test
+    public void zxczxc() {
+        //     https://stackoverflow.com/a/28150956/1501234
+        // Matcher.results()
+        // Scanner.findAll()
+
+        // "2 TIMES 2 0 TIMES 5 1";
+        // https://stackoverflow.com/questions/57288671
+    }
+
 }
